@@ -10,10 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Build image
         run: docker build -t lab-app:${{ github.sha }} .
-
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
@@ -27,7 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Scan Terraform with Trivy
         uses: aquasecurity/trivy-action@master
         with:
@@ -37,12 +34,11 @@ jobs:
           severity: CRITICAL,HIGH,MEDIUM
           exit-code: '0'
 
-secret-scan:
+  secret-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Scan filesystem for secrets with Trivy
         uses: aquasecurity/trivy-action@master
         with:
